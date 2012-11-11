@@ -2,6 +2,10 @@
 
 [![Build Status](https://secure.travis-ci.org/euskadi31/Spore.png)](http://travis-ci.org/euskadi31/Spore)
 
+This function is EXPERIMENTAL. The behaviour of this function, its name, 
+and surrounding documentation may change without notice in a future release of PHP. 
+
+
 [SPORE](https://github.com/SPORE/) is a way to describe public services HTTP APIs such as [twitter] [1] 
 or applications with an HTTP interface such as [Apache CouchDB] [2] 
 using a simple language-agnostic JSON document that can be used by 
@@ -132,3 +136,4 @@ The tests can be executed by using this command from the base directory:
 ## Report Issues/Bugs
 
 [Bugs](https://github.com/euskadi31/Spore/issues)
+
