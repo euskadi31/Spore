@@ -84,6 +84,9 @@ Output
     )
 
 ### Generated client
+    
+    cd Spore/
+    bin/spore generate:client demo/spec/github.json
 
 ``` php
 <?php
