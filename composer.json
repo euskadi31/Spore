@@ -1,0 +1,27 @@
+{
+    "name": "euskadi31/Spore",
+    "type": "library",
+    "description": "Spore client for PHP5.3+",
+    "keywords": ["spore", "rest", "client", "api", "http"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Axel Etcheverry",
+            "email": "axel@etcheverry.biz",
+            "homepage": "http://www.axel-etcheverry.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Spore": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/http-foundation": "2.1.*",
+        "symfony/console": "2.1.*",
+        "mageekguy/atoum": "master-dev",
+        "twig/twig": ">=1.8,<2.0-dev"
+    },
+    "minimum-stability": "dev"
+}

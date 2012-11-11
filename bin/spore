@@ -1,0 +1,26 @@
+#!/usr/bin/env php -q
+<?php
+/**
+ * @package     Spore
+ * @author      Axel Etcheverry <axel@etcheverry.biz>
+ * @copyright   Copyright (c) 2012 Axel Etcheverry (http://www.axel-etcheverry.com)
+ * @license     MIT
+ */
+
+/**
+ * @namespace
+ */
+namespace Console;
+
+umask(0000);
+
+set_time_limit(0);
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Spore\Command\GenerateCommand;
+
+$console = new Application("Spore Console", \Spore\Client::VERSION);
+$console->add(new GenerateCommand());
+$console->run();
