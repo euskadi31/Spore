@@ -1,5 +1,5 @@
 {
-    "name": "euskadi31/Spore",
+    "name": "euskadi31/spore",
     "type": "library",
     "description": "Spore client for PHP5.3+",
     "keywords": ["spore", "rest", "client", "api", "http"],
