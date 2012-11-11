@@ -132,15 +132,33 @@ class Request
      */
     public function getUri()
     {
-        return http_build_url(array(
-            'scheme'    => $this->getScheme(),
-            'host'      => $this->getHost(),
-            'port'      => $this->getPort() == 80 ? null : $this->getPort(),
-            'user'      => $this->getUser(),
-            'pass'      => $this->getPassword(),
-            'path'      => $this->getPath(),
-            'query'     => http_build_query($this->getQuery()->all())
-        ));
+        $uri = $this->getScheme() . '://';
+
+        if (!empty($this->user)) {
+            $uri .= $this->user;
+
+            if (!empty($this->password)) {
+                $uri .= ':' . $this->password;
+            }
+
+            $uri .= '@';
+        }
+
+        $uri .= $this->host;
+
+        if ($this->port != 80) {
+            $uri .= ':' . $this->port;
+        }
+
+        if (!empty($this->path)) {
+            $uri .= $this->path;
+        }
+
+        if ($this->getQuery()->count() > 0) {
+            $uri .= '?' . http_build_query($this->getQuery()->all());
+        }
+
+        return $uri;
     }
 
     /**
