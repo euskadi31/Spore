@@ -15,7 +15,7 @@ use Spore\HttpFoundation\Request;
 use Spore\HttpFoundation\Adapter\AdapterInterface;
 use Spore\HttpFoundation\Adapter\Curl;
 use Spore\Middleware\MiddlewareInterface;
-use InvalidArguementException;
+use InvalidArgumentException;
 use SplObjectStorage;
 use ArrayObject;
 
@@ -100,12 +100,13 @@ abstract class ClientAbstract
         if (!empty($required)) {
             foreach ($required as $key) {
                 if (!isset($params[$key])) {
-                    throw new InvalidArguementException(sprintf("Missing %s parameter.", $key));
+                    throw new InvalidArgumentException(sprintf("Missing %s parameter.", $key));
                 }
             }
         }
 
         if (!empty($optional)) {
+            $optional = array_merge($optional, $required);
             foreach ($params as $key => $value) {
                 if (!in_array($key, $optional)) {
                     unset($params[$key]);
@@ -197,13 +198,34 @@ abstract class ClientAbstract
     {
         $method = strtoupper($method);
 
+        $parts = array();
+
+        if (strpos($uri, '/') !== false) {
+            $parts = array_filter(explode('/', $uri));
+        }
+
         foreach ($params as $key => $value) {
             $uri = str_replace(':' . $key, $value, $uri);
+        }
+
+        if (!empty($parts)) {
+            foreach ($parts as $value) {
+                if ($value[0] == ':') {
+                    $key = substr($value, 1);
+                    if (isset($params[$key])) {
+                        unset($params[$key]);
+                    }
+                }
+            }
         }
 
         $request = new Request();
         $request->setUri($uri);
         $request->setMethod($method);
+
+        if (!empty($params)) {
+            $request->setQuery($params);
+        }
 
         if (!empty($data)) {
             $request->setData($data);

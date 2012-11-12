@@ -11,6 +11,7 @@
  */
 namespace Spore;
 
+use Spore\HttpFoundation\Response;
 use Spore\HttpFoundation\Request;
 use Spore\Cache\CacheInterface;
 use Spore\Cache\PhpArray;

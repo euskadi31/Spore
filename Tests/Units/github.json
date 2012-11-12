@@ -1,0 +1,25 @@
+{
+    "base_url": "https://api.github.com",
+    "version": "0.1",
+    "methods": {
+        "get_user": {
+            "required_params": [
+                "user"
+            ],
+            "path": "/users/:user",
+            "method": "GET",
+            "expected": [
+                200
+            ],
+            "documentation": "Get a single user"
+        }
+    },
+    "formats": [
+        "json"
+    ],
+    "name": "Github",
+    "authority": "GITHUB:euskadi31",
+    "meta": {
+        "documentation": "http://developer.github.com/v3/"
+    }
+}

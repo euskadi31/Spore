@@ -13,6 +13,7 @@ namespace Spore\Middleware;
 
 use Spore\HttpFoundation\Response;
 use RuntimeException;
+use InvalidArgumentException;
 use ArrayObject;
 
 class Format extends MiddlewareAbstract
@@ -25,9 +26,13 @@ class Format extends MiddlewareAbstract
      */
     public function processResponse(Response $response, ArrayObject $env)
     {
-        if($response->isSuccessful()) {
+        if (!isset($env['format'])) {
+            throw new InvalidArgumentException("Missing format parameter.");
+        }
 
-            if(!$response->isEmpty()) {
+        if ($response->isSuccessful()) {
+
+            if (!$response->isEmpty()) {
 
                 switch ($env['format']) {
                     case 'json':

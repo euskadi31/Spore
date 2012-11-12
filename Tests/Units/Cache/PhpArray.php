@@ -10,6 +10,9 @@ class PhpArray extends Spore\Test\Unit
 {
     public function testClass()
     {
+        $this->assert->class("\Spore\Cache\PhpArray")
+            ->hasInterface('\Spore\Cache\CacheInterface');
+
         $cache = new Spore\Cache\PhpArray();
 
         $this->assert->object($cache)

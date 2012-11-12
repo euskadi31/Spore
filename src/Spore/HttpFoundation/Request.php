@@ -450,7 +450,7 @@ class Request
      * @param Array $headers
      * @return \Spore\HttpFoundation\Request
      */
-    public function setHeader(array $headers)
+    public function setHeaders(array $headers)
     {
         if(empty($this->headers)) {
             $this->headers = new ParameterBag();
