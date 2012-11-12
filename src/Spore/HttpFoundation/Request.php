@@ -86,7 +86,7 @@ class Request
      */
     public function __construct($uri = null)
     {
-        if(!empty($uri)) {
+        if (!empty($uri)) {
             $this->setUri($uri);
         }
     }
@@ -103,23 +103,23 @@ class Request
         $this->setScheme($parts['scheme']);
         $this->setHost($parts['host']);
 
-        if(isset($parts['port'])) {
+        if (isset($parts['port'])) {
             $this->setPort($parts['port']);
         }
 
-        if(isset($parts['user'])) {
+        if (isset($parts['user'])) {
             $this->setUser($parts['user']);
         }
 
-        if(isset($parts['pass'])) {
+        if (isset($parts['pass'])) {
             $this->setPassword($parts['pass']);
         }
 
-        if(isset($parts['path'])) {
+        if (isset($parts['path'])) {
             $this->setPath($parts['path']);
         }
 
-        if(isset($parts['query'])) {
+        if (isset($parts['query'])) {
             $this->setQuery($parts['query']);
         }
 
@@ -171,7 +171,7 @@ class Request
     {
         $method = strtoupper($method);
 
-        if(in_array($method, $this->methods)) {
+        if (in_array($method, $this->methods)) {
             $this->method = $method;
             return $this;
         }
@@ -415,15 +415,15 @@ class Request
      */
     public function setQuery($query)
     {
-        if(is_string($query)) {
+        if (is_string($query)) {
             parse_str($query, $query);
         }
 
-        if(!is_array($query)) {
+        if (!is_array($query)) {
             throw new \InvalidArgumentException("Invalid argument");
         }
 
-        if(empty($this->query)) {
+        if (empty($this->query)) {
             $this->query = new ParameterBag($query);
         } else {
             $this->query->add($query);
@@ -438,7 +438,7 @@ class Request
      */
     public function getQuery()
     {
-        if(empty($this->query)) {
+        if (empty($this->query)) {
             $this->query = new ParameterBag();
         }
 
@@ -452,7 +452,7 @@ class Request
      */
     public function setHeaders(array $headers)
     {
-        if(empty($this->headers)) {
+        if (empty($this->headers)) {
             $this->headers = new ParameterBag();
         }
 
@@ -467,7 +467,7 @@ class Request
      */
     public function getHeaders()
     {
-        if(empty($this->headers)) {
+        if (empty($this->headers)) {
             $this->headers = new ParameterBag();
         }
 
