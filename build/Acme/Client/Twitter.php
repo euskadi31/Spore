@@ -31,6 +31,8 @@ class Twitter extends ClientAbstract
      * 
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getRetweetsOfMe(array $params)
     {
@@ -52,13 +54,15 @@ class Twitter extends ClientAbstract
         $response = $this->get($this->base . "/statuses/retweets_of_me.:format", $params);
 
         
-        return $response->getContent();
+        return $response;
     }
 
     /**
      * 
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getFriendsTimeline(array $params)
     {
@@ -81,13 +85,15 @@ class Twitter extends ClientAbstract
         $response = $this->get($this->base . "/statuses/friends_timeline.:format", $params);
 
         
-        return $response->getContent();
+        return $response;
     }
 
     /**
      * 
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getUserTimeline(array $params)
     {
@@ -112,13 +118,15 @@ class Twitter extends ClientAbstract
         $response = $this->get($this->base . "/statuses/user_timeline.:format", $params);
 
         
-        return $response->getContent();
+        return $response;
     }
 
     /**
      * 
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getPublicTimeline(array $params)
     {
@@ -136,13 +144,15 @@ class Twitter extends ClientAbstract
         $response = $this->get($this->base . "/statuses/public_timeline.:format", $params);
 
         
-        return $response->getContent();
+        return $response;
     }
 
     /**
      * 
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getMentions(array $params)
     {
@@ -165,13 +175,15 @@ class Twitter extends ClientAbstract
         $response = $this->get($this->base . "/statuses/mentions.:format", $params);
 
         
-        return $response->getContent();
+        return $response;
     }
 
     /**
      * 
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getHomeTimeline(array $params)
     {
@@ -193,13 +205,15 @@ class Twitter extends ClientAbstract
         $response = $this->get($this->base . "/statuses/home_timeline.:format", $params);
 
         
-        return $response->getContent();
+        return $response;
     }
 
     /**
      * 
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getRetweetedByMe(array $params)
     {
@@ -221,13 +235,15 @@ class Twitter extends ClientAbstract
         $response = $this->get($this->base . "/statuses/retweeted_by_me.:format", $params);
 
         
-        return $response->getContent();
+        return $response;
     }
 
     /**
      * 
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getRetweetedToMe(array $params)
     {
@@ -249,7 +265,7 @@ class Twitter extends ClientAbstract
         $response = $this->get($this->base . "/statuses/retweeted_to_me.:format", $params);
 
         
-        return $response->getContent();
+        return $response;
     }
 
     

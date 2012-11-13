@@ -128,19 +128,9 @@ class Request extends Spore\Test\Unit
         })
         ->isInstanceOf('\InvalidArgumentException');
 
-        $request->setHeaders(array(
-            'Accept' => 'application/json'
-        ));
-
-        $this->assert->object($request->getHeaders())
-            ->isInstanceOf('\Symfony\Component\HttpFoundation\ParameterBag');
-        
         $request = new \Spore\HttpFoundation\Request();
 
         $this->assert->object($request->getQuery())
-            ->isInstanceOf('\Symfony\Component\HttpFoundation\ParameterBag');
-
-        $this->assert->object($request->getHeaders())
             ->isInstanceOf('\Symfony\Component\HttpFoundation\ParameterBag');
 
         $request->setData('test');

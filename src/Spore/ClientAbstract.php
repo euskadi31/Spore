@@ -36,6 +36,12 @@ abstract class ClientAbstract
      */
     protected $format = 'json';
 
+    /**
+     * @var Array
+     */
+    protected $formats = array(
+        'json' => 'application/json'
+    );
 
     public function __construct()
     {
@@ -222,6 +228,12 @@ abstract class ClientAbstract
         $request = new Request();
         $request->setUri($uri);
         $request->setMethod($method);
+
+        if (isset($this->formats[$this->format])) {
+            $request->headers->set('Accept', $this->formats[$this->format]);
+        } else {
+            $request->headers->set('Accept', '');
+        }
 
         if (!empty($params)) {
             $request->setQuery($params);

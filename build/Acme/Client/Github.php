@@ -31,6 +31,8 @@ class Github extends ClientAbstract
      * Get a single user
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function getUser(array $params)
     {
@@ -50,7 +52,7 @@ class Github extends ClientAbstract
             throw new RuntimeException(Response::$statusTexts[$response->getStatusCode()]);
         }
         
-        return $response->getContent();
+        return $response;
     }
 
     

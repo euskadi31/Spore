@@ -12,6 +12,7 @@
 namespace Spore\HttpFoundation;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
+use Spore\HttpFoundation\HeaderBag;
 
 class Request
 {
@@ -21,9 +22,9 @@ class Request
     protected $query;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\ParameterBag
+     * @var \Spore\HttpFoundation\HeaderBag
      */
-    protected $headers;
+    public $headers;
 
     /**
      * @var Mixed
@@ -86,6 +87,8 @@ class Request
      */
     public function __construct($uri = null)
     {
+        $this->headers = new HeaderBag();
+
         if (!empty($uri)) {
             $this->setUri($uri);
         }
@@ -443,35 +446,6 @@ class Request
         }
 
         return $this->query;
-    }
-
-    /**
-     *
-     * @param Array $headers
-     * @return \Spore\HttpFoundation\Request
-     */
-    public function setHeaders(array $headers)
-    {
-        if (empty($this->headers)) {
-            $this->headers = new ParameterBag();
-        }
-
-        $this->headers->add($headers);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @return \Symfony\Component\HttpFoundation\ParameterBag
-     */
-    public function getHeaders()
-    {
-        if (empty($this->headers)) {
-            $this->headers = new ParameterBag();
-        }
-
-        return $this->headers;
     }
     
     /**

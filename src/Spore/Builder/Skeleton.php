@@ -42,6 +42,8 @@ class {{ name }} extends ClientAbstract
      * {{ method.documentation }}
      * 
      * @param Array $params
+     * @return \Spore\HttpFoundation\Response
+     * @throws \RuntimeException
      */
     public function {{ method.name }}(array $params)
     {
@@ -79,7 +81,7 @@ class {{ name }} extends ClientAbstract
         }
         {% endif %}
 
-        return $response->getContent();
+        return $response;
     }
 
     {% endfor %}

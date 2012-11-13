@@ -10,9 +10,16 @@ use Spore;
 
 echo "Demo with generate client" . PHP_EOL;
 $client = new Acme\Client\Github;
-print_r($client->getUser(array(
+$response = $client->getUser(array(
     'user' => 'euskadi31'
-)));
+));
+
+print_r($response->getContent());
+
+echo "Headers :" . PHP_EOL;
+
+echo "X-RateLimit-Limit : " . $response->headers->get('x-ratelimit-limit') . PHP_EOL;
+echo "X-RateLimit-Remaining : " . $response->headers->get('x-ratelimit-remaining') . PHP_EOL;
 
 echo PHP_EOL;
 
@@ -25,3 +32,8 @@ $response = $client->call('GET', 'get_user', array(
 ));
 
 print_r($response->getContent());
+
+echo "Headers :" . PHP_EOL;
+
+echo "X-RateLimit-Limit : " . $response->headers->get('x-ratelimit-limit') . PHP_EOL;
+echo "X-RateLimit-Remaining : " . $response->headers->get('x-ratelimit-remaining') . PHP_EOL;
