@@ -34,7 +34,7 @@ class Twitter extends ClientAbstract
      * @return \Spore\HttpFoundation\Response
      * @throws \RuntimeException
      */
-    public function getRetweetsOfMe(array $params)
+    public function retweetsOfMe(array $params)
     {
         $params = $this->verifyParameters(
             $params,
@@ -64,7 +64,7 @@ class Twitter extends ClientAbstract
      * @return \Spore\HttpFoundation\Response
      * @throws \RuntimeException
      */
-    public function getFriendsTimeline(array $params)
+    public function friendsTimeline(array $params)
     {
         $params = $this->verifyParameters(
             $params,
@@ -95,7 +95,7 @@ class Twitter extends ClientAbstract
      * @return \Spore\HttpFoundation\Response
      * @throws \RuntimeException
      */
-    public function getUserTimeline(array $params)
+    public function userTimeline(array $params)
     {
         $params = $this->verifyParameters(
             $params,
@@ -128,7 +128,7 @@ class Twitter extends ClientAbstract
      * @return \Spore\HttpFoundation\Response
      * @throws \RuntimeException
      */
-    public function getPublicTimeline(array $params)
+    public function publicTimeline(array $params)
     {
         $params = $this->verifyParameters(
             $params,
@@ -154,7 +154,7 @@ class Twitter extends ClientAbstract
      * @return \Spore\HttpFoundation\Response
      * @throws \RuntimeException
      */
-    public function getMentions(array $params)
+    public function mentions(array $params)
     {
         $params = $this->verifyParameters(
             $params,
@@ -185,7 +185,7 @@ class Twitter extends ClientAbstract
      * @return \Spore\HttpFoundation\Response
      * @throws \RuntimeException
      */
-    public function getHomeTimeline(array $params)
+    public function homeTimeline(array $params)
     {
         $params = $this->verifyParameters(
             $params,
@@ -215,7 +215,7 @@ class Twitter extends ClientAbstract
      * @return \Spore\HttpFoundation\Response
      * @throws \RuntimeException
      */
-    public function getRetweetedByMe(array $params)
+    public function retweetedByMe(array $params)
     {
         $params = $this->verifyParameters(
             $params,
@@ -245,7 +245,7 @@ class Twitter extends ClientAbstract
      * @return \Spore\HttpFoundation\Response
      * @throws \RuntimeException
      */
-    public function getRetweetedToMe(array $params)
+    public function retweetedToMe(array $params)
     {
         $params = $this->verifyParameters(
             $params,

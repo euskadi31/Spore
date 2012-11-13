@@ -105,6 +105,11 @@ abstract class ClientAbstract
     {
         if (!empty($required)) {
             foreach ($required as $key) {
+
+                if ($key == 'format') {
+                    $params['format'] = $this->format;
+                }
+
                 if (!isset($params[$key])) {
                     throw new InvalidArgumentException(sprintf("Missing %s parameter.", $key));
                 }

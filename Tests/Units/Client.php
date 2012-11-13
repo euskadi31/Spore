@@ -130,7 +130,7 @@ class Client extends Spore\Test\Unit
         $params = $client->verifyParameters(array(
             'foot'   => 'bar',
             'id'     => 123,
-            'format' => 'json',
+            'format' => 'xml',
             'user'   => 'euskadi31'
         ), array(
             'format',

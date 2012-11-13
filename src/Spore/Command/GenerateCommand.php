@@ -98,25 +98,13 @@ class GenerateCommand extends Command
 
             $parts = explode('_', $key);
 
-            if (in_array($parts[0], array(
-                'get', 
-                'post', 
-                'put', 
-                'delete', 
-                'head', 
-                'options', 
-                'patch', 
-                'trace', 
-                'connect'
-            ))) {
-                unset($parts[0]);
-            }
-
             $parts = array_map(function($part) {
                 return ucfirst(strtolower($part));
             }, $parts);
 
-            $value["name"] = strtolower($value["method"]) . implode('', $parts);
+            $parts[0] = strtolower($parts[0]);
+
+            $value["name"] = implode('', $parts);
             $value["method"] = strtolower($value["method"]);
             $methods[$key] = $value;
         }
