@@ -18,6 +18,18 @@ use ArrayObject;
 interface MiddlewareInterface
 {
     /**
+     *
+     * @return String
+     */
+    public function getName();
+    
+    /**
+     *
+     * @return Integer
+     */
+    public function getPriority();
+
+    /**
      * 
      * @param \Spore\HttpFoundation\Request $request
      * @param \ArrayObject $env

@@ -199,9 +199,21 @@ class Curl implements AdapterInterface
         unset($data);
 
         $response = curl_exec($ch);
+
+        if ($response === false) {
+            $error = curl_error($ch);
+            curl_close($ch);
+            throw new RuntimeException($error);
+        }
+
         $info = curl_getinfo($ch);
         curl_close($ch);
         
+        // close resource
+        if (isset($fh)) {
+            fclose($fh);
+        }
+
         // Eliminate multiple HTTP responses.
         do {
             $parts  = preg_split('|(?:\r?\n){2}|m', $response, 2);
@@ -219,6 +231,8 @@ class Curl implements AdapterInterface
         }
         
         list($header, $body) = explode("\r\n\r\n", $response);
+        
+        unset($response);
 
         $_headers = explode("\r\n", $header);
         unset($_headers[0], $header);
@@ -237,12 +251,7 @@ class Curl implements AdapterInterface
         if (isset($headers['status'])) {
             unset($headers['status']);
         }
- 
-        if ($response === false) {
-            throw new RuntimeException(curl_error($ch));
-        }
 
-        $response = new Response($body, $info['http_code'], $headers);
-        return $response;
+        return new Response($body, $info['http_code'], $headers);
     }
 }

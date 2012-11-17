@@ -13,8 +13,8 @@ namespace Spore;
 
 use Spore\HttpFoundation\Response;
 use Spore\HttpFoundation\Request;
-use Spore\Cache\CacheInterface;
-use Spore\Cache\PhpArray;
+use Swift\Cache\CacheInterface;
+use Swift\Cache\PhpArray;
 use InvalidArgumentException;
 use RuntimeException;
 use SplFileInfo;
@@ -30,7 +30,7 @@ class Client extends ClientAbstract
     protected $spec;
 
     /**
-     * @var \Spore\Cache\CacheInterface
+     * @var \Swift\Cache\CacheInterface
      */
     protected $cache;
 
@@ -40,7 +40,7 @@ class Client extends ClientAbstract
     protected $format = 'json';
 
     /**
-     * @param \Spore\Cache\CacheInterface $cache
+     * @param \Swift\Cache\CacheInterface $cache
      * @return \Spore\Client
      */
     public function setCache(CacheInterface $cache)
@@ -51,7 +51,7 @@ class Client extends ClientAbstract
     }
 
     /**
-     * @return \Spore\Cache\CacheInterface
+     * @return \Swift\Cache\CacheInterface
      */
     public function getCache()
     {

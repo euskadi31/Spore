@@ -16,17 +16,29 @@ use RuntimeException;
 use InvalidArgumentException;
 use ArrayObject;
 
-class Format extends MiddlewareAbstract
+class Cache extends MiddlewareAbstract
 {
     /**
      * @var Integer
      */
-    protected $priority = 0;
+    protected $priority = -100;
 
     /**
      * @var String
      */
-    protected $name = 'format';
+    protected $name = 'cache';
+
+    /**
+     * 
+     * @param \Spore\HttpFoundation\Request $request
+     * @param \ArrayObject $env
+     */
+    public function processRequest(Request $request, ArrayObject $env)
+    {
+        // serialize and hash $request
+        // chack cache
+        // if cached set $env['request.cached'] = true;
+    }
 
     /**
      * 

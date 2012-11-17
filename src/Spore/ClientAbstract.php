@@ -16,7 +16,6 @@ use Spore\HttpFoundation\Adapter\AdapterInterface;
 use Spore\HttpFoundation\Adapter\Curl;
 use Spore\Middleware\MiddlewareInterface;
 use InvalidArgumentException;
-use SplObjectStorage;
 use ArrayObject;
 
 abstract class ClientAbstract
@@ -27,10 +26,15 @@ abstract class ClientAbstract
     protected $adapter;
 
     /**
-     * @var \SplObjectStorage;
+     * @var Array;
      */
-    protected $middlewares;
+    protected $middlewares = array();
 
+    /**
+     * @var Array
+     */
+    protected $middlewaresKeys = array();
+    
     /**
      * @var String
      */
@@ -45,8 +49,6 @@ abstract class ClientAbstract
 
     public function __construct()
     {
-        $this->middlewares = new SplObjectStorage();
-
         $this->addMiddleware(new Middleware\Format());
     }
 
@@ -58,11 +60,48 @@ abstract class ClientAbstract
      */
     public function addMiddleware(MiddlewareInterface $middleware)
     {
-        if(!$this->middlewares->contains($middleware)) {
-            $this->middlewares->attach($middleware);
+        if (!isset($this->middlewaresKeys[$middleware->getName()])) {
+            $this->middlewares[] = $middleware;
+            $this->middlewaresKeys[$middleware->getName()] = $middleware->getPriority();
         }
-        
+
         return $this;
+    }
+
+    /**
+     * Remove Middleware
+     * 
+     * @param String $name
+     * @return \Spore\ClientAbstract
+     */
+    public function removeMiddleware($name)
+    {
+        foreach ($this->middlewares as $key => $middleware) {
+            if ($middleware->getName() == $name) {
+                unset($this->middlewares[$key]);
+                unset($this->middlewaresKeys[$name]);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get middlewares
+     * 
+     * @return Array
+     */
+    public function getMiddlewares()
+    {
+        $index = array();
+
+        foreach ($this->middlewares as $key => $middleware) {
+            $index[$key] = $middleware->getPriority();
+        }
+
+        array_multisort($index, SORT_DESC, $this->middlewares);
+
+        return $this->middlewares;
     }
 
     /**
@@ -252,15 +291,19 @@ abstract class ClientAbstract
             'format' => $this->format
         ));
 
-        foreach ($this->middlewares as $middleware) {
+        $middlewares = $this->getMiddlewares();
+
+        foreach ($middlewares as $middleware) {
             $middleware->processRequest($request, $env);
         }
 
         $response = $this->getAdapter()->execute($request);
 
-        foreach ($this->middlewares as $middleware) {
+        foreach ($middlewares as $middleware) {
             $middleware->processResponse($response, $env);
         }
+        
+        unset($middlewares);
 
         return $response;
     }

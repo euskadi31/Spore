@@ -18,6 +18,34 @@ use ArrayObject;
 abstract class MiddlewareAbstract implements MiddlewareInterface
 {
     /**
+     * @var Integer
+     */
+    protected $priority = 0;
+
+    /**
+     * @var String
+     */
+    protected $name;
+
+    /**
+     *
+     * @return String
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    /**
+     *
+     * @return Integer
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
      * 
      * @param \Spore\HttpFoundation\Request $request
      * @param \ArrayObject $env

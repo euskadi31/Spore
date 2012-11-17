@@ -18,10 +18,13 @@
     },
     "require": {
         "php": ">=5.3.3",
+        "swiftframework/cache": "master-dev",
         "symfony/http-foundation": "2.1.*",
         "symfony/console": "2.1.*",
-        "mageekguy/atoum": "master-dev",
         "twig/twig": ">=1.8,<2.0-dev"
+    },
+    "require-dev": {
+        "mageekguy/atoum": "master-dev"
     },
     "minimum-stability": "dev"
 }

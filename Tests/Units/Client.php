@@ -22,7 +22,7 @@ class Client extends Spore\Test\Unit
 
         $data = array();
 
-        $cache = new mock\Spore\Cache\PhpArray();
+        $cache = new mock\Swift\Cache\PhpArray();
 
         $cache->getMockController()->set = function($name, $data) use ($data) {
             $data[$name] = $data;
@@ -39,7 +39,7 @@ class Client extends Spore\Test\Unit
         $client->setCache($cache);
 
         $this->assert->object($client->getCache())
-            ->isInstanceOf('\Spore\Cache\PhpArray');
+            ->isInstanceOf('\Swift\Cache\PhpArray');
 
         $client->loadSpec(__DIR__ . '/github.json');
 
@@ -190,7 +190,7 @@ class Client extends Spore\Test\Unit
         $client = new Spore\Client();
 
         $this->assert->object($client->getCache())
-            ->isInstanceOf('\Spore\Cache\PhpArray');
+            ->isInstanceOf('\Swift\Cache\PhpArray');
 
         $this->assert->object($client->getAdapter())
             ->isInstanceOf('\Spore\HttpFoundation\Adapter\Curl');
