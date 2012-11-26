@@ -24,7 +24,7 @@
         "twig/twig": ">=1.8,<2.0-dev"
     },
     "require-dev": {
-        "mageekguy/atoum": "master-dev"
+        "atoum/atoum": "master-dev"
     },
     "minimum-stability": "dev"
 }
